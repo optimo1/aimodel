@@ -2,26 +2,47 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
-    background-color: #f0f0f0;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-h1 {
+    padding: 0;
+    background-color: #f9f9f9;
     color: #333;
-    text-align: center;
+    line-height: 1.6;
 }
 
-.upload-section {
-    margin: 20px 0;
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: #2c3e50;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.upload-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.upload-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 #essayFile {
@@ -31,31 +52,61 @@ h1 {
 
 #essayInput {
     width: 100%;
-    height: 200px;
-    padding: 10px;
+    height: 250px;
+    padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
     box-sizing: border-box;
-    resize: vertical;
+    font-size: 1em;
 }
 
-.feedback {
+.feedback-section {
+    margin-top: 40px;
+}
+
+.feedback-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.feedback-container h3 {
+    color: #2980b9;
     margin-top: 20px;
 }
 
+.features, .testimonials {
+    margin-top: 40px;
+}
+
+.feature-grid, .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.feature, .testimonial {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.testimonial {
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    margin-top: 40px;
+}
+
 h2 {
-    color: #444;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
-}
-
-#stats, #suggestions {
-    margin: 10px 0;
-}
-
-.suggestion {
-    padding: 5px;
-    margin: 5px 0;
-    background-color: #f9f9f9;
-    border-left: 3px solid #007bff;
+    color: #2c3e50;
+    text-align: center;
 }
