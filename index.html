@@ -4,22 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Essay Evaluator</title>
+    <title>EssayMaster - Elevate Your Essays</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Essay Evaluator</h1>
-        <div class="upload-section">
-            <input type="file" id="essayFile" accept=".txt" onchange="evaluateEssay()">
-            <textarea id="essayInput" placeholder="Or paste your essay here..." oninput="evaluateEssay()"></textarea>
-        </div>
-        <div class="feedback" id="feedback">
-            <h2>Feedback</h2>
-            <div id="stats"></div>
-            <div id="suggestions"></div>
-        </div>
-    </div>
+    <header>
+        <h1>EssayMaster</h1>
+        <p>Instantly improve your essays with expert-level feedback ✨</p>
+    </header>
+
+    <main>
+        <section class="upload-section">
+            <h2>Your dream school awaits</h2>
+            <div class="upload-container">
+                <input type="file" id="essayFile" accept=".txt" onchange="analyzeEssay()">
+                <textarea id="essayInput" placeholder="Paste your essay here..." oninput="analyzeEssay()"></textarea>
+            </div>
+        </section>
+
+        <section class="feedback-section" id="feedback">
+            <h2>Your Feedback</h2>
+            <div class="feedback-container">
+                <div id="line-by-line"></div>
+                <div id="scoring"></div>
+                <div id="suggestions"></div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>Line-by-Line Comments</h3>
+                    <p>Get detailed feedback on every sentence to perfect your writing.</p>
+                </div>
+                <div class="feature">
+                    <h3>Scoring</h3>
+                    <p>See how your essay ranks against top applications (0-10 scale).</p>
+                </div>
+                <div class="feature">
+                    <h3>Suggestions</h3>
+                    <p>Receive actionable advice to elevate your essay.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>What Students Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">"EssayMaster turned my good essay into a GREAT one!" - Sarah K.</div>
+                <div class="testimonial">"The feedback is brutally honest and incredibly helpful." - James L.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© EssayMaster 2025. Built with ❤️ for student success.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
