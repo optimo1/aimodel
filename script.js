@@ -1,20 +1,16 @@
 // script.js
-function evaluateEssay() {
+function analyzeEssay() {
     let text = '';
-    
-    // Check if file is uploaded
     const fileInput = document.getElementById('essayFile');
     const textArea = document.getElementById('essayInput');
-    
+
     if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
         const reader = new FileReader();
-        
         reader.onload = function(e) {
             text = e.target.result;
             processEssay(text);
         };
-        
         reader.readAsText(file);
     } else if (textArea.value.trim()) {
         text = textArea.value;
@@ -25,52 +21,49 @@ function evaluateEssay() {
 function processEssay(text) {
     if (!text.trim()) return;
 
-    // Basic statistics
-    const words = text.split(/\s+/).filter(word => word.length > 0);
-    const wordCount = words.length;
+    // Basic analysis
     const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const words = text.split(/\s+/).filter(w => w.length > 0);
+    const wordCount = words.length;
     const sentenceCount = sentences.length;
-    const avgWordsPerSentence = (wordCount / sentenceCount).toFixed(1);
-    
-    // Simple analysis
-    const longSentences = sentences.filter(s => s.split(/\s+/).length > 30).length;
-    const repeatedWords = findRepeatedWords(words);
-    
-    // Generate feedback
-    let statsHtml = `
-        <p>Word Count: ${wordCount}</p>
-        <p>Sentence Count: ${sentenceCount}</p>
-        <p>Average Words per Sentence: ${avgWordsPerSentence}</p>
-    `;
-    
-    let suggestionsHtml = '<h3>Suggestions:</h3>';
-    if (wordCount < 100) {
-        suggestionsHtml += '<p class="suggestion">Your essay is quite short. Consider adding more details and examples.</p>';
-    }
-    if (longSentences > 0) {
-        suggestionsHtml += `<p class="suggestion">Found ${longSentences} very long sentence(s). Consider splitting them for better readability.</p>`;
-    }
-    if (repeatedWords.length > 0) {
-        suggestionsHtml += '<p class="suggestion">You might be overusing these words: ' + 
-            repeatedWords.join(', ') + '. Try using synonyms.</p>';
-    }
-    if (sentenceCount < 5) {
-        suggestionsHtml += '<p class="suggestion">Try adding more sentences to develop your ideas further.</p>';
-    }
 
-    document.getElementById('stats').innerHTML = statsHtml;
-    document.getElementById('suggestions').innerHTML = suggestionsHtml;
-}
+    // Scoring (simplified simulation of Esslo's scoring)
+    const detailScore = Math.min(10, Math.floor(wordCount / 50)); // Rough detail metric
+    const voiceScore = Math.min(10, Math.floor(sentenceCount / 5)); // Rough voice metric
+    const characterScore = Math.min(10, Math.floor((wordCount + sentenceCount) / 20)); // Rough character metric
 
-function findRepeatedWords(words) {
-    const wordFreq = {};
-    words.forEach(word => {
-        word = word.toLowerCase().replace(/[.,!?]/g, '');
-        wordFreq[word] = (wordFreq[word] || 0) + 1;
+    // Line-by-line feedback (basic example)
+    let lineByLine = '<h3>Line-by-Line Feedback</h3>';
+    sentences.forEach((sentence, index) => {
+        if (sentence.split(/\s+/).length > 30) {
+            lineByLine += `<p>Sentence ${index + 1}: This sentence is quite long. Consider splitting it for clarity.</p>`;
+        } else if (sentence.split(/\s+/).length < 5) {
+            lineByLine += `<p>Sentence ${index + 1}: This is very short. Could you add more detail?</p>`;
+        }
     });
-    
-    return Object.entries(wordFreq)
-        .filter(([_, count]) => count > 5)
-        .map(([word, _]) => word)
-        .slice(0, 3);
+
+    // Scoring output
+    const scoring = `
+        <h3>Scoring (0-10)</h3>
+        <p>Detail: ${detailScore}</p>
+        <p>Voice: ${voiceScore}</p>
+        <p>Character: ${characterScore}</p>
+    `;
+
+    // Suggestions
+    let suggestions = '<h3>Suggestions</h3>';
+    if (wordCount < 250) {
+        suggestions += '<p>Your essay is on the shorter side. Consider adding more examples and depth.</p>';
+    }
+    if (sentenceCount < 10) {
+        suggestions += '<p>Try adding more sentences to fully develop your ideas.</p>';
+    }
+    if (detailScore < 7) {
+        suggestions += '<p>Add more specific details to strengthen your narrative.</p>';
+    }
+
+    // Update DOM
+    document.getElementById('line-by-line').innerHTML = lineByLine;
+    document.getElementById('scoring').innerHTML = scoring;
+    document.getElementById('suggestions').innerHTML = suggestions;
 }
