@@ -1,65 +1,81 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EssayMaster - Elevate Your Essays</title>
+    <title>FinanceMaster - Your Financial Companion</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>EssayMaster</h1>
-        <p>Instantly improve your essays with expert-level feedback ✨</p>
+        <h1>FinanceMaster</h1>
+        <nav>
+            <button onclick="showSection('tracker')">Budget Tracker</button>
+            <button onclick="showSection('ai-bot')">AI Advisor</button>
+            <button onclick="showSection('learning')">Learn Finance</button>
+        </nav>
     </header>
 
     <main>
-        <section class="upload-section">
-            <h2>Your dream school awaits</h2>
-            <div class="upload-container">
-                <input type="file" id="essayFile" accept=".txt" onchange="analyzeEssay()">
-                <textarea id="essayInput" placeholder="Paste your essay here..." oninput="analyzeEssay()"></textarea>
+        <!-- Budget Tracker -->
+        <section id="tracker" class="section">
+            <h2>Budget Tracker</h2>
+            <div class="tracker-container">
+                <div class="input-form">
+                    <input type="text" id="description" placeholder="Description">
+                    <input type="number" id="amount" placeholder="Amount">
+                    <select id="type">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <button onclick="addTransaction()">Add</button>
+                </div>
+                <div id="balance">Balance: $0</div>
+                <canvas id="budgetChart"></canvas>
+                <button onclick="exportToExcel()">Export to Excel</button>
             </div>
         </section>
 
-        <section class="feedback-section" id="feedback">
-            <h2>Your Feedback</h2>
-            <div class="feedback-container">
-                <div id="line-by-line"></div>
-                <div id="scoring"></div>
-                <div id="suggestions"></div>
+        <!-- AI Bot -->
+        <section id="ai-bot" class="section" style="display: none;">
+            <h2>AI Financial Advisor</h2>
+            <div class="chat-container">
+                <div id="chat-output"></div>
+                <input type="text" id="chat-input" placeholder="Ask about finance...">
+                <button onclick="sendMessage()">Send</button>
             </div>
         </section>
 
-        <section class="features">
-            <h2>Features</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <h3>Line-by-Line Comments</h3>
-                    <p>Get detailed feedback on every sentence to perfect your writing.</p>
+        <!-- Learning Platform -->
+        <section id="learning" class="section" style="display: none;">
+            <h2>Learn Finance</h2>
+            <div class="lesson-container">
+                <div class="lesson">
+                    <h3>Lesson 1: Budgeting Basics</h3>
+                    <p>Learn how to manage your money effectively.</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1T_98uT8lsk" frameborder="0" allowfullscreen></iframe>
+                    <button onclick="startQuiz(1)">Take Quiz</button>
                 </div>
-                <div class="feature">
-                    <h3>Scoring</h3>
-                    <p>See how your essay ranks against top applications (0-10 scale).</p>
+                <div id="quiz" style="display: none;">
+                    <h3>Quiz</h3>
+                    <p id="quiz-question"></p>
+                    <button onclick="checkAnswer(true)">True</button>
+                    <button onclick="checkAnswer(false)">False</button>
                 </div>
-                <div class="feature">
-                    <h3>Suggestions</h3>
-                    <p>Receive actionable advice to elevate your essay.</p>
+                <div class="checklist">
+                    <h3>Checklist</h3>
+                    <ul>
+                        <li><input type="checkbox"> Set a monthly budget</li>
+                        <li><input type="checkbox"> Track expenses</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-
-        <section class="testimonials">
-            <h2>What Students Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial">"EssayMaster turned my good essay into a GREAT one!" - Sarah K.</div>
-                <div class="testimonial">"The feedback is brutally honest and incredibly helpful." - James L.</div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© EssayMaster 2025. Built with ❤️ for student success.</p>
+        <p>© FinanceMaster 2025. Empowering your financial journey.</p>
     </footer>
 
     <script src="script.js"></script>
