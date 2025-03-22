@@ -1,10 +1,72 @@
 let transactions = [];
 let chart;
+let currentUser = null;
 
 function showSection(sectionId) {
+    if (!currentUser) {
+        showAuth();
+        return;
+    }
     document.querySelectorAll('.section').forEach(section => {
         section.style.display = section.id === sectionId ? 'block' : 'none';
     });
+}
+
+function showAuth() {
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = section.id === 'auth' ? 'block' : 'none';
+    });
+    document.getElementById('sidebar').style.display = 'none';
+}
+
+// Authentication Functions
+function handleAuth() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const isLogin = document.getElementById('auth-title').textContent === 'Login';
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+
+    if (isLogin) {
+        if (users[username] && users[username].password === password) {
+            currentUser = username;
+            loadUserData();
+            updateUIAfterLogin();
+        } else {
+            alert('Invalid username or password.');
+        }
+    } else {
+        if (users[username]) {
+            alert('Username already exists.');
+        } else {
+            users[username] = { password, transactions: [] };
+            localStorage.setItem('users', JSON.stringify(users));
+            currentUser = username;
+            transactions = [];
+            updateUIAfterLogin();
+        }
+    }
+}
+
+function toggleAuthMode() {
+    const isLogin = document.getElementById('auth-title').textContent === 'Login';
+    document.getElementById('auth-title').textContent = isLogin ? 'Register' : 'Login';
+    document.getElementById('auth-btn').textContent = isLogin ? 'Register' : 'Login';
+    document.getElementById('auth-switch').textContent = isLogin ? 'Already have an account? Login here.' : 'Need an account? Register here.';
+}
+
+function logout() {
+    currentUser = null;
+    transactions = [];
+    document.getElementById('welcome-msg').textContent = '';
+    document.getElementById('logout-btn').style.display = 'none';
+    showAuth();
+}
+
+function updateUIAfterLogin() {
+    document.getElementById('welcome-msg').textContent = `Welcome, ${currentUser}!`;
+    document.getElementById('logout-btn').style.display = 'inline';
+    document.getElementById('sidebar').style.display = 'block';
+    showSection('tracker');
 }
 
 // Budget Tracker Functions
@@ -14,8 +76,16 @@ function addTransaction() {
     const type = document.getElementById('type').value;
 
     if (description && !isNaN(amount)) {
-        transactions.push({ description, amount, type });
+        const transaction = { 
+            date: new Date().toLocaleString(), 
+            description, 
+            amount, 
+            type 
+        };
+        transactions.push(transaction);
+        saveUserData();
         updateTracker();
+        updateHistory();
         document.getElementById('description').value = '';
         document.getElementById('amount').value = '';
     }
@@ -37,15 +107,15 @@ function updateTracker() {
             labels: ['Income', 'Expenses'],
             datasets: [{
                 data: [income, expenses],
-                backgroundColor: ['#2ecc71', '#e74c3c']
+                backgroundColor: ['#28a745', '#dc3545']
             }]
         }
     });
 }
 
 function exportToExcel() {
-    const data = transactions.map(t => `${t.description},${t.amount},${t.type}`).join('\n');
-    const blob = new Blob([`Description,Amount,Type\n${data}`], { type: 'text/csv' });
+    const data = transactions.map(t => `${t.date},${t.description},${t.amount},${t.type}`).join('\n');
+    const blob = new Blob([`Date,Description,Amount,Type\n${data}`], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -53,49 +123,34 @@ function exportToExcel() {
     a.click();
 }
 
-// AI Bot Functions
-async function getAIResponse(input) {
-    const apiKey = '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'; // Ваш API-ключ от Hugging Face
-    const url = 'https://api-inference.huggingface.co/models/distilgpt2';
-    const prompt = `Provide financial advice: ${input}`;
-
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                inputs: prompt,
-                max_length: 100,
-                temperature: 0.7
-            })
-        });
-        const data = await response.json();
-        if (data && data[0] && data[0].generated_text) {
-            return data[0].generated_text.replace(prompt, '').trim();
-        } else {
-            return 'Sorry, I couldn’t generate a response. Try again!';
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        return 'Error connecting to AI service. Please try again later.';
-    }
+// History Functions
+function updateHistory() {
+    const tbody = document.getElementById('history-body');
+    tbody.innerHTML = '';
+    transactions.forEach(t => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${t.date}</td>
+            <td>${t.description}</td>
+            <td>$${t.amount.toFixed(2)}</td>
+            <td>${t.type}</td>
+        `;
+        tbody.appendChild(row);
+    });
 }
 
-function sendMessage() {
-    const input = document.getElementById('chat-input').value;
-    const output = document.getElementById('chat-output');
-    output.innerHTML += `<p><strong>You:</strong> ${input}</p>`;
+// Data Persistence
+function saveUserData() {
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    users[currentUser].transactions = transactions;
+    localStorage.setItem('users', JSON.stringify(users));
+}
 
-    output.innerHTML += `<p><strong>AI:</strong> Thinking...</p>`;
-    getAIResponse(input).then(response => {
-        output.innerHTML = output.innerHTML.replace('<p><strong>AI:</strong> Thinking...</p>', 
-            `<p><strong>AI:</strong> ${response}</p>`);
-        output.scrollTop = output.scrollHeight;
-    });
-    document.getElementById('chat-input').value = '';
+function loadUserData() {
+    const users = JSON.parse(localStorage.getItem('users')) || {};
+    transactions = users[currentUser]?.transactions || [];
+    updateTracker();
+    updateHistory();
 }
 
 // Learning Platform Functions
@@ -110,3 +165,9 @@ function checkAnswer(answer) {
     alert(result);
     document.getElementById('quiz').style.display = 'none';
 }
+
+// Initial Load
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('sidebar').style.display = 'none';
+    showAuth();
+});
