@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essay Evaluator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Essay Evaluator</h1>
+        <div class="upload-section">
+            <input type="file" id="essayFile" accept=".txt" onchange="evaluateEssay()">
+            <textarea id="essayInput" placeholder="Or paste your essay here..." oninput="evaluateEssay()"></textarea>
+        </div>
+        <div class="feedback" id="feedback">
+            <h2>Feedback</h2>
+            <div id="stats"></div>
+            <div id="suggestions"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
