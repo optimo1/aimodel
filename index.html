@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinanceMaster - Your Financial Companion</title>
+    <title>FinanceMaster - Manage Your Finances</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
         <h1>FinanceMaster</h1>
-        <nav>
-            <button onclick="showSection('tracker')">Budget Tracker</button>
-            <button onclick="showSection('ai-bot')">AI Advisor</button>
-            <button onclick="showSection('learning')">Learn Finance</button>
-        </nav>
+        <div id="user-info">
+            <span id="welcome-msg"></span>
+            <button id="logout-btn" onclick="logout()" style="display: none;">Logout</button>
+        </div>
     </header>
 
     <main>
+        <!-- Login/Register Section -->
+        <section id="auth" class="section">
+            <div class="auth-container">
+                <h2 id="auth-title">Login</h2>
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <button id="auth-btn" onclick="handleAuth()">Login</button>
+                <p id="auth-switch" onclick="toggleAuthMode()">Need an account? Register here.</p>
+            </div>
+        </section>
+
         <!-- Budget Tracker -->
-        <section id="tracker" class="section">
+        <section id="tracker" class="section" style="display: none;">
             <h2>Budget Tracker</h2>
             <div class="tracker-container">
                 <div class="input-form">
@@ -29,21 +39,31 @@
                         <option value="income">Income</option>
                         <option value="expense">Expense</option>
                     </select>
-                    <button onclick="addTransaction()">Add</button>
+                    <button onclick="addTransaction()">Add Transaction</button>
                 </div>
-                <div id="balance">Balance: $0</div>
+                <div class="balance-info">
+                    <span id="balance">Balance: $0</span>
+                    <button onclick="exportToExcel()">Export to Excel</button>
+                </div>
                 <canvas id="budgetChart"></canvas>
-                <button onclick="exportToExcel()">Export to Excel</button>
             </div>
         </section>
 
-        <!-- AI Bot -->
-        <section id="ai-bot" class="section" style="display: none;">
-            <h2>AI Financial Advisor</h2>
-            <div class="chat-container">
-                <div id="chat-output"></div>
-                <input type="text" id="chat-input" placeholder="Ask about finance...">
-                <button onclick="sendMessage()">Send</button>
+        <!-- Transaction History -->
+        <section id="history" class="section" style="display: none;">
+            <h2>Transaction History</h2>
+            <div class="history-container">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body"></tbody>
+                </table>
             </div>
         </section>
 
@@ -73,6 +93,12 @@
             </div>
         </section>
     </main>
+
+    <nav class="sidebar">
+        <button onclick="showSection('tracker')">Budget Tracker</button>
+        <button onclick="showSection('history')">History</button>
+        <button onclick="showSection('learning')">Learn Finance</button>
+    </nav>
 
     <footer>
         <p>© FinanceMaster 2025. Empowering your financial journey.</p>
