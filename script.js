@@ -17,23 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const amount = parseFloat(document.getElementById("amount").value);
         const type = document.getElementById("type").value;
-        const category = document.getElementById("category").value;
-        const date = document.getElementById("date").value;
 
-        if ( skončit
+        if (type === "income") income += amount;
+        else expenses += amount;
 
-type === "income" ? income += amount : expenses += amount;
         const savings = income - expenses;
         document.getElementById("income").textContent = `${income.toLocaleString()} KZT`;
         document.getElementById("expenses").textContent = `${expenses.toLocaleString()} KZT`;
         document.getElementById("savings").textContent = `${savings.toLocaleString()} KZT`;
         document.getElementById("progress").textContent = `${((savings / goal) * 100).toFixed(2)}% to 1M KZT`;
 
-        // Placeholder AI analysis (to be replaced with API call)
+        // Placeholder AI analysis
         const lang = langSelect.value;
-        const insight = lang === "en" 
-            ? `You added ${amount} to ${type}. At this rate, you'll reach 1M in ${Math.ceil((goal - savings) / (savings || 1))} months!`
-            : `Ты добавил ${amount} в ${type === "income" ? "доходы" : "расходы"}. С такой скоростью ты достигнешь 1 млн через ${Math.ceil((goal - savings) / (savings || 1))} месяцев!`;
+        const insight = lang === "en"
+            ? `Added ${amount} to ${type}. To reach 1M faster, save ${(goal - savings) / 60} KZT monthly for 5 years.`
+            : `Добавлено ${amount} в ${type}. Чтобы быстрее достичь 1 млн, откладывай ${(goal - savings) / 60} KZT ежемесячно 5 лет.`;
         document.getElementById("ai-output").textContent = insight;
 
         form.reset();
