@@ -3,107 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinanceMaster - Manage Your Finances</title>
+    <title>Optimo - Your Path to a Million</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>FinanceMaster</h1>
-        <div id="user-info">
-            <span id="welcome-msg"></span>
-            <button id="logout-btn" onclick="logout()" style="display: none;">Logout</button>
-        </div>
+        <h1>Optimo</h1>
+        <select id="language">
+            <option value="en">English</option>
+            <option value="ru">Русский</option>
+        </select>
     </header>
-
     <main>
-        <!-- Login/Register Section -->
-        <section id="auth" class="section">
-            <div class="auth-container">
-                <h2 id="auth-title">Login</h2>
-                <input type="text" id="username" placeholder="Username">
-                <input type="password" id="password" placeholder="Password">
-                <button id="auth-btn" onclick="handleAuth()">Login</button>
-                <p id="auth-switch" onclick="toggleAuthMode()">Need an account? Register here.</p>
+        <section class="welcome">
+            <h2 data-en="Your Path to a Million Starts Here" data-ru="Твой путь к миллиону начинается здесь">Your Path to a Million Starts Here</h2>
+            <button data-en="Get Started" data-ru="Начать">Get Started</button>
+        </section>
+        <section class="dashboard">
+            <h2 data-en="Dashboard" data-ru="Панель управления">Dashboard</h2>
+            <div class="stats">
+                <p><span data-en="Income" data-ru="Доходы">Income</span>: <span id="income">0</span> KZT</p>
+                <p><span data-en="Expenses" data-ru="Расходы">Expenses</span>: <span id="expenses">0</span> KZT</p>
+                <p><span data-en="Savings" data-ru="Сбережения">Savings</span>: <span id="savings">0</span> KZT</p>
             </div>
         </section>
-
-        <!-- Budget Tracker -->
-        <section id="tracker" class="section" style="display: none;">
-            <h2>Budget Tracker</h2>
-            <div class="tracker-container">
-                <div class="input-form">
-                    <input type="text" id="description" placeholder="Description">
-                    <input type="number" id="amount" placeholder="Amount">
-                    <select id="type">
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
-                    </select>
-                    <button onclick="addTransaction()">Add Transaction</button>
-                </div>
-                <div class="balance-info">
-                    <span id="balance">Balance: $0</span>
-                    <button onclick="exportToExcel()">Export to Excel</button>
-                </div>
-                <canvas id="budgetChart"></canvas>
-            </div>
+        <section class="input">
+            <h2 data-en="Add Transaction" data-ru="Добавить транзакцию">Add Transaction</h2>
+            <form id="transaction-form">
+                <input type="number" id="amount" placeholder="Amount / Сумма" required>
+                <select id="type">
+                    <option value="income" data-en="Income" data-ru="Доход">Income</option>
+                    <option value="expense" data-en="Expense" data-ru="Расход">Expense</option>
+                </select>
+                <input type="text" id="category" placeholder="Category / Категория" required>
+                <button type="submit" data-en="Submit" data-ru="Отправить">Submit</button>
+            </form>
         </section>
-
-        <!-- Transaction History -->
-        <section id="history" class="section" style="display: none;">
-            <h2>Transaction History</h2>
-            <div class="history-container">
-                <table id="history-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Type</th>
-                        </tr>
-                    </thead>
-                    <tbody id="history-body"></tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Learning Platform -->
-        <section id="learning" class="section" style="display: none;">
-            <h2>Learn Finance</h2>
-            <div class="lesson-container">
-                <div class="lesson">
-                    <h3>Lesson 1: Budgeting Basics</h3>
-                    <p>Learn how to manage your money effectively.</p>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1T_98uT8lsk" frameborder="0" allowfullscreen></iframe>
-                    <button onclick="startQuiz(1)">Take Quiz</button>
-                </div>
-                <div id="quiz" style="display: none;">
-                    <h3>Quiz</h3>
-                    <p id="quiz-question"></p>
-                    <button onclick="checkAnswer(true)">True</button>
-                    <button onclick="checkAnswer(false)">False</button>
-                </div>
-                <div class="checklist">
-                    <h3>Checklist</h3>
-                    <ul>
-                        <li><input type="checkbox"> Set a monthly budget</li>
-                        <li><input type="checkbox"> Track expenses</li>
-                    </ul>
-                </div>
-            </div>
+        <section class="ai-insights">
+            <h2 data-en="AI Insights" data-ru="Анализ ИИ">AI Insights</h2>
+            <p id="ai-output" data-en="Enter data to get insights" data-ru="Введи данные для анализа">Enter data to get insights</p>
         </section>
     </main>
-
-    <nav class="sidebar">
-        <button onclick="showSection('tracker')">Budget Tracker</button>
-        <button onclick="showSection('history')">History</button>
-        <button onclick="showSection('learning')">Learn Finance</button>
-    </nav>
-
-    <footer>
-        <p>© FinanceMaster 2025. Empowering your financial journey.</p>
-    </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
