@@ -3,31 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimo - Your Path to a Million</title>
+    <title>Optimo - Reach Your First Million</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Optimo</h1>
-        <select id="language">
-            <option value="en">English</option>
-            <option value="ru">Русский</option>
-        </select>
+        <div class="logo">Optimo</div>
+        <nav>
+            <a href="#dashboard" data-en="Dashboard" data-ru="Панель">Dashboard</a>
+            <a href="#input" data-en="Add" data-ru="Добавить">Add</a>
+            <a href="#insights" data-en="Insights" data-ru="Анализ">Insights</a>
+            <select id="language">
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+            </select>
+        </nav>
     </header>
     <main>
-        <section class="welcome">
-            <h2 data-en="Your Path to a Million Starts Here" data-ru="Твой путь к миллиону начинается здесь">Your Path to a Million Starts Here</h2>
-            <button data-en="Get Started" data-ru="Начать">Get Started</button>
+        <section class="hero">
+            <h1 data-en="Your Path to a Million Starts Here" data-ru="Твой путь к миллиону начинается здесь">Your Path to a Million Starts Here</h1>
+            <p data-en="Track, analyze, and grow with Optimo!" data-ru="Отслеживай, анализируй и расти с Optimo!">Track, analyze, and grow with Optimo!</p>
+            <button data-en="Start Now" data-ru="Начать сейчас">Start Now</button>
         </section>
-        <section class="dashboard">
-            <h2 data-en="Dashboard" data-ru="Панель управления">Dashboard</h2>
-            <div class="stats">
-                <p><span data-en="Income" data-ru="Доходы">Income</span>: <span id="income">0</span> KZT</p>
-                <p><span data-en="Expenses" data-ru="Расходы">Expenses</span>: <span id="expenses">0</span> KZT</p>
-                <p><span data-en="Savings" data-ru="Сбережения">Savings</span>: <span id="savings">0</span> KZT</p>
+        <section id="dashboard" class="dashboard">
+            <h2 data-en="Your Financial Overview" data-ru="Твой финансовый обзор">Your Financial Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 data-en="Income" data-ru="Доходы">Income</h3>
+                    <p id="income">0 KZT</p>
+                </div>
+                <div class="stat-card">
+                    <h3 data-en="Expenses" data-ru="Расходы">Expenses</h3>
+                    <p id="expenses">0 KZT</p>
+                </div>
+                <div class="stat-card">
+                    <h3 data-en="Savings" data-ru="Сбережения">Savings</h3>
+                    <p id="savings">0 KZT</p>
+                </div>
+                <div class="stat-card">
+                    <h3 data-en="Goal Progress" data-ru="Прогресс к цели">Goal Progress</h3>
+                    <p id="progress">0% to 1M KZT</p>
+                </div>
             </div>
         </section>
-        <section class="input">
+        <section id="input" class="input">
             <h2 data-en="Add Transaction" data-ru="Добавить транзакцию">Add Transaction</h2>
             <form id="transaction-form">
                 <input type="number" id="amount" placeholder="Amount / Сумма" required>
@@ -36,14 +56,18 @@
                     <option value="expense" data-en="Expense" data-ru="Расход">Expense</option>
                 </select>
                 <input type="text" id="category" placeholder="Category / Категория" required>
-                <button type="submit" data-en="Submit" data-ru="Отправить">Submit</button>
+                <input type="date" id="date" required>
+                <button type="submit" data-en="Add" data-ru="Добавить">Add</button>
             </form>
         </section>
-        <section class="ai-insights">
+        <section id="insights" class="insights">
             <h2 data-en="AI Insights" data-ru="Анализ ИИ">AI Insights</h2>
-            <p id="ai-output" data-en="Enter data to get insights" data-ru="Введи данные для анализа">Enter data to get insights</p>
+            <div id="ai-output" data-en="Add transactions to see AI insights" data-ru="Добавь транзакции для анализа ИИ">Add transactions to see AI insights</div>
         </section>
     </main>
+    <footer>
+        <p data-en="&copy; 2025 Optimo. All rights reserved." data-ru="&copy; 2025 Optimo. Все права защищены.">&copy; 2025 Optimo. All rights reserved.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
