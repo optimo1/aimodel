@@ -1,215 +1,74 @@
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
-    color: #333;
+    background-color: #f0f4f8;
 }
 
 header {
-    background-color: #1a73e8;
+    background-color: #1e90ff;
     color: white;
-    padding: 20px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+#language {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+}
+
+.welcome, .dashboard, .input, .ai-insights {
+    background: white;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-header h1 {
-    margin: 0;
-    font-size: 1.8em;
-}
-
-#user-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#logout-btn {
-    background-color: #ff4444;
+.welcome {
+    background: linear-gradient(135deg, #32cd32, #1e90ff);
     color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#logout-btn:hover {
-    background-color: #cc0000;
-}
-
-.section {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 25px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.auth-container {
     text-align: center;
 }
 
-.auth-container input {
-    display: block;
-    width: 80%;
-    max-width: 300px;
-    margin: 10px auto;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.auth-container button {
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.auth-container button:hover {
-    background-color: #1557b0;
-}
-
-#auth-switch {
-    color: #1a73e8;
-    cursor: pointer;
-}
-
-.tracker-container, .history-container, .lesson-container {
-    padding: 20px;
-}
-
-.input-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.input-form input, .input-form select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    flex: 1;
-}
-
-.input-form button {
-    background-color: #28a745;
-    color: white;
-    border: none;
+.welcome button {
     padding: 10px 20px;
+    background: #ff4500;
+    border: none;
+    color: white;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.input-form button:hover {
-    background-color: #218838;
+.stats p {
+    font-size: 18px;
 }
 
-.balance-info {
+form {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 10px;
 }
 
-#balance {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #333;
+input, select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.balance-info button {
-    background-color: #6c757d;
+button[type="submit"] {
+    background: #1e90ff;
     color: white;
     border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
     cursor: pointer;
-}
-
-.balance-info button:hover {
-    background-color: #5a6268;
-}
-
-#budgetChart {
-    max-height: 300px;
-}
-
-.history-container table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.history-container th, .history-container td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-.history-container th {
-    background-color: #f8f9fa;
-    color: #555;
-}
-
-.lesson iframe {
-    margin: 15px 0;
-    border-radius: 5px;
-}
-
-.checklist ul {
-    list-style: none;
-    padding: 0;
-}
-
-.checklist li {
-    margin: 10px 0;
-}
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 80px;
-    width: 200px;
-    background-color: #ffffff;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    height: calc(100vh - 120px);
-}
-
-.sidebar button {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    padding: 12px;
-    background-color: #1a73e8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: left;
-}
-
-.sidebar button:hover {
-    background-color: #1557b0;
-}
-
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #1a73e8;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-h2 {
-    color: #1a73e8;
-    margin-bottom: 20px;
 }
