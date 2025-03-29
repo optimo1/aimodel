@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Optimo - Reach Your First Million</title>
+    <title>Optimo - Your Journey to Wealth</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="logo">Optimo</div>
-        <nav>
-            <a href="#dashboard" data-en="Dashboard" data-ru="Панель">Dashboard</a>
-            <a href="#input" data-en="Add" data-ru="Добавить">Add</a>
-            <a href="#insights" data-en="Insights" data-ru="Анализ">Insights</a>
-            <select id="language">
-                <option value="en">English</option>
-                <option value="ru">Русский</option>
-            </select>
-        </nav>
+        <div class="container">
+            <div class="logo">Optimo</div>
+            <nav>
+                <a href="#dashboard" data-en="Dashboard" data-ru="Панель">Dashboard</a>
+                <a href="#input" data-en="Add" data-ru="Добавить">Add</a>
+                <a href="#insights" data-en="AI Insights" data-ru="Анализ ИИ">AI Insights</a>
+                <a href="#videos" data-en="Learn" data-ru="Учиться">Learn</a>
+                <select id="language">
+                    <option value="en">EN</option>
+                    <option value="ru">RU</option>
+                </select>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section class="hero">
-            <h1 data-en="Your Path to a Million Starts Here" data-ru="Твой путь к миллиону начинается здесь">Your Path to a Million Starts Here</h1>
-            <p data-en="Track, analyze, and grow with Optimo!" data-ru="Отслеживай, анализируй и расти с Optimo!">Track, analyze, and grow with Optimo!</p>
-            <button data-en="Start Now" data-ru="Начать сейчас">Start Now</button>
-        </section>
-        <section id="dashboard" class="dashboard">
-            <h2 data-en="Your Financial Overview" data-ru="Твой финансовый обзор">Your Financial Overview</h2>
+
+    <section class="hero">
+        <div class="container">
+            <h1 data-en="Your Journey to Wealth Starts Here" data-ru="Твой путь к богатству начинается здесь">Your Journey to Wealth Starts Here</h1>
+            <p data-en="Track your finances, get AI insights, and learn to grow your wealth." 
+               data-ru="Отслеживай финансы, получай анализ ИИ и учись увеличивать богатство.">Track your finances, get AI insights, and learn to grow your wealth.</p>
+            <button data-en="Get Started" data-ru="Начать">Get Started</button>
+        </div>
+    </section>
+
+    <section id="dashboard" class="section">
+        <div class="container">
+            <h2 data-en="Financial Dashboard" data-ru="Финансовая панель">Financial Dashboard</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3 data-en="Income" data-ru="Доходы">Income</h3>
@@ -42,12 +50,15 @@
                     <p id="savings">0 KZT</p>
                 </div>
                 <div class="stat-card">
-                    <h3 data-en="Goal Progress" data-ru="Прогресс к цели">Goal Progress</h3>
+                    <h3 data-en="Goal" data-ru="Цель">Goal</h3>
                     <p id="progress">0% to 1M KZT</p>
                 </div>
             </div>
-        </section>
-        <section id="input" class="input">
+        </div>
+    </section>
+
+    <section id="input" class="section input-section">
+        <div class="container">
             <h2 data-en="Add Transaction" data-ru="Добавить транзакцию">Add Transaction</h2>
             <form id="transaction-form">
                 <input type="number" id="amount" placeholder="Amount / Сумма" required>
@@ -59,15 +70,43 @@
                 <input type="date" id="date" required>
                 <button type="submit" data-en="Add" data-ru="Добавить">Add</button>
             </form>
-        </section>
-        <section id="insights" class="insights">
+        </div>
+    </section>
+
+    <section id="insights" class="section">
+        <div class="container">
             <h2 data-en="AI Insights" data-ru="Анализ ИИ">AI Insights</h2>
-            <div id="ai-output" data-en="Add transactions to see AI insights" data-ru="Добавь транзакции для анализа ИИ">Add transactions to see AI insights</div>
-        </section>
-    </main>
+            <p id="ai-output" data-en="Add transactions to see insights" data-ru="Добавь транзакции для анализа">Add transactions to see insights</p>
+        </div>
+    </section>
+
+    <section id="videos" class="section video-section">
+        <div class="container">
+            <h2 data-en="Financial Literacy Videos" data-ru="Видео по финансовой грамотности">Financial Literacy Videos</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <p data-en="Budgeting Basics" data-ru="Основы бюджетирования">Budgeting Basics</p>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <p data-en="Investing 101" data-ru="Инвестиции 101">Investing 101</p>
+                </div>
+                <div class="video-card">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <p data-en="Saving for Wealth" data-ru="Сбережения для богатства">Saving for Wealth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p data-en="&copy; 2025 Optimo. All rights reserved." data-ru="&copy; 2025 Optimo. Все права защищены.">&copy; 2025 Optimo. All rights reserved.</p>
+        <div class="container">
+            <p data-en="© 2025 Optimo. All rights reserved." data-ru="© 2025 Optimo. Все права защищены.">© 2025 Optimo. All rights reserved.</p>
+            <p><a href="mailto:info@optimo.io">info@optimo.io</a> | Based in Astana, Kazakhstan</p>
+        </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
